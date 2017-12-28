@@ -1,0 +1,18 @@
+def swap(X,Y):
+    X,Y=Y,X
+
+def bubblesort(l):
+    if len(l)<2:
+        return l
+    else:
+        for p in range(len(l)-1):
+            i, j = 0, 1
+            while j<len(l):
+                if l[i]>l[j]:
+                    l[i],l[j]=l[j],l[i]
+                i+=1
+                j+=1
+l=[5,6,4,3]
+bubblesort(l)
+print(l)
+
