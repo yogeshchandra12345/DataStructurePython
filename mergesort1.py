@@ -1,25 +1,30 @@
-def merge(a,b):
+def merge(l,r):
+    result=[]
+    i,j=0,0
 
-    c = []
-    while len(a) != 0 and len(b) != 0:
-        if a[0] < b[0]:
-            c.append(a[0])
-            a.remove(a[0])
+    while i<len(l) and j<len(r):
+        if l[i]<r[j]:
+            result.append(l[i])
+            i+=1
         else:
-            c.append(b[0])
-            b.remove(b[0])
-    if len(a) == 0:
-        c += b
-    else:
-        c += a
-    return c
+            result.append(r[j])
+            j+=1
+    while i<len(l):
+        result.append(l[i])
+        i+=1
+    while j<len(r):
+        result.append(r[j])
+        j+=1
+    return result
 
-def mergesort(x):
-    """ Function to sort an array using merge sort algorithm """
-    if len(x) == 0 or len(x) == 1:
-        return x
+
+def mergesort(l):
+    if len(l)<2:
+        return l
     else:
-        middle = len(x)//2
-        a = mergesort(x[:middle])
-        b = mergesort(x[middle:])
-        return merge(a,b)
+        mid=len(l)//2
+        first=mergesort(l[:mid])
+        second=mergesort(l[mid:])
+        return merge(first,second)
+
+print (mergesort([2,1,3,6,7,5,-1,-3]))
