@@ -58,9 +58,6 @@ def dijkstra(g,start):
                 next.previous=current
             else:
                 pass
-        while len(l):
-            heapq.heappop(l)
-        l=[(i.distance,i) for i in g.v.values() if not i.visited]
         heapq.heapify(l)
 
 def shortest(v, path):
