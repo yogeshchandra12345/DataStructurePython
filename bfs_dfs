@@ -1,0 +1,103 @@
+import sys
+class vertex:
+    def __init__(self,node):
+        self.id=node
+        self.distance=sys.maxsize
+        self.previous=None
+        self.adjacent={}
+        self.visited=False
+
+    def __lt__(self, other):
+        if isinstance(other,self.__class__):
+            return self.distance < other.distance
+
+class graph:
+    def __init__(self):
+        self.v={}
+        self.nv=0
+    def add_vertex(self,node):
+        newvertex=vertex(node)
+        self.v[node]=newvertex
+
+    def add_edge(self,frm,to,cost):
+        if not self.v[frm]:
+            frmv=self.add_vertex(frm)
+        else:
+            frmv=self.v[frm]
+        if not self.v[to]:
+            tov=self.add_vertex(to)
+        else:
+            tov=self.v[to]
+        frmv.adjacent[tov]=cost
+        tov.adjacent[frmv]=cost
+
+    def getedge(self):
+        edge=[]
+        for v in self.v.values():
+            for e in v.adjacent.keys():
+                edge.append((v.id,e.id,v.adjacent[e]))
+        for i in edge:
+            print(i)
+
+
+
+path=[]
+def bfs(graph,start):
+    start.distance=0
+    start.previous=None
+    q=[]
+    start.visited=True
+    q.append(start)
+    while q:
+        cv=q.pop(0)
+        path.append(cv.id)
+        for nv in cv.adjacent.keys():
+            if nv.visited==False:
+                q.append(nv)
+                nv.previous=cv
+                nv.distance=cv.distance+1
+                nv.visited=True
+
+
+def dfs(start):
+    start.visited=True
+    print(start.id)
+    for nv in start.adjacent.keys():
+        if nv.visited==False:
+            dfs(nv)
+
+
+
+
+if __name__=='__main__':
+    g = graph()
+    g.add_vertex('a')
+    g.add_vertex('b')
+    g.add_vertex('c')
+    g.add_vertex('d')
+    g.add_vertex('e')
+    g.add_vertex('f')
+    g.add_edge('a', 'b', 7)
+    g.add_edge('a', 'c', 9)
+    g.add_edge('a', 'f', 14)
+    g.add_edge('b', 'c', 10)
+    g.add_edge('b', 'd', 15)
+    #g.add_edge('c', 'd', 11)
+    g.add_edge('c', 'f', 2)
+    g.add_edge('d', 'e', 6)
+    g.add_edge('e', 'f', 9)
+
+
+    dfs(g.v['a'])
+    #bfs(g, g.v['a'])
+    for i in path:
+        print(i,end='-> ')
+
+
+
+
+
+
+
+
+
