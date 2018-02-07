@@ -1,0 +1,35 @@
+'''
+# Can't encode using ASCII coding beacuse these characters's unicode cann't fit in 1 byte storage. we need some big byte space encoding i.e utf-8 of utf-16.
+
+out1 = "(嘉南大圳 ㄐㄧㄚ　ㄋㄢˊ　ㄉㄚˋ　ㄗㄨㄣˋ )"
+fobj = open("t1.txt", "w", encoding="ASCII")  # saving string charater using ASCII unicoding
+fobj.write(out1)
+fobj.close()
+fobj = open("t1.txt", "r", encoding="ASCII") # must be decode using same encoding type inwhich it is saved i.e. ASCII otherwise cann't read it correctly.
+print(fobj.read())
+print(type(fobj))
+
+'''
+# default encoding used is ASCII in python 3, when we save text string in python files. so to save foreign languages characters we need to save this using 
+#  big byte encoding format i.e. utf-8/16....
+
+out1 = "(嘉南大圳 ㄐㄧㄚ　ㄋㄢˊ　ㄉㄚˋ　ㄗㄨㄣˋ )"
+fobj = open("t1.txt", "w", encoding="utf-8")  # saving string charater using utf-8 unicoding
+fobj.write(out1)
+fobj.close()
+fobj = open("t1.txt", "r", encoding="utf-8") # must be decode using same encoding type inwhich it is saved.
+print(fobj.read())
+print(type(fobj))
+
+'''
+out1 = "(嘉南大圳 ㄐㄧㄚ　ㄋㄢˊ　ㄉㄚˋ　ㄗㄨㄣˋ )"
+fobj = open("t1.txt", "w", encoding="utf-16")  # saving string charater using utf-16 unicoding
+fobj.write(out1)
+fobj.close()
+fobj = open("t1.txt", "r", encoding="utf-16") # must be decode using same encoding type inwhich it is saved i.e. utf-16 otherwise cann't read it correctly.
+print(fobj.read())
+print(type(fobj))
+
+'''
+
+
