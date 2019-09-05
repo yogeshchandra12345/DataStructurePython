@@ -1,6 +1,3 @@
-def swap(X,Y):
-    X,Y=Y,X
-
 def bubblesort(l):
     if len(l)<2:
         return l
