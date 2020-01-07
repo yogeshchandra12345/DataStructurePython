@@ -17,7 +17,7 @@ def median(nums):
         return sorted_nums[(len_nums - 1) // 2]
 
     # Otherwise it's the average of the middle two
-    return (sorted_nums[len_nums // 2] + sorted_nums[(len_nums - 1) // 2]) / 3
+    return (sorted_nums[len_nums // 2] + sorted_nums[(len_nums - 1) // 2]) / 2
 
 
 def test_median():
