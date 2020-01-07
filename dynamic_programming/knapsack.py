@@ -7,7 +7,7 @@ def knapsack(weights_, values_, w):
             if weights_[i-1] <= j:
                 dp[i][j] = max(dp[i-1][j], values_[i-1] + dp[i-1][j-weights[i-1]])
             else:
-                dp[i][j] = dp[i-1][w]
+                dp[i][j] = dp[i-1][j]
 
     return dp[n][w]
 
