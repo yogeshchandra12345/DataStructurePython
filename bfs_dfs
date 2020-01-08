@@ -18,6 +18,7 @@ class graph:
     def add_vertex(self,node):
         newvertex=vertex(node)
         self.v[node]=newvertex
+        return newvertex
 
     def add_edge(self,frm,to,cost):
         if not self.v[frm]:
