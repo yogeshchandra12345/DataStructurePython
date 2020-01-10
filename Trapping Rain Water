@@ -7,12 +7,15 @@ class Solution(object):
     # @param A, a list
     # @return an integer
     def maxWaterTrapped(self, a):
-        # write your awesome code here
-        if len(a)<2 :
+        # take two pointers first, second.
+        # fix first pointer to max of left array and iterate by second pointer
+        # if second pointer is greater than first, initialilze first to second pointer and continue.
+      
+        if len(a)<2 : # Check length of array
             return 0
         first = a[0]
         second = a[1]
-        result =0 
+        result = 0 
         for i in a[1:]:
             second = i
             if second > first:
@@ -20,12 +23,16 @@ class Solution(object):
                 second = None
             else:
                 result += first-second
+       # print(first, second)
         second = 0 
-        if second < first:
+        if second < first: 
+            # if first pointer is less than second.
+            # remove extra added water from end of the array.
             for i in a[::-1]:
                 second = max(second,i)
                 if second != first and second < first:
                     result -= first-second
                 else:
                     break
+        #print(result)
         return result
